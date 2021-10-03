@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 views = Blueprint(__name__, "views")
 @views.route("/")
 def home():
@@ -8,6 +8,7 @@ def home():
 def profile():
     args = request.args
     name = args.get('name')
-    #param = args.get('paramName)
-    #to access multiple query parameters
-    return render_template("index.html", name=name) 
+    return render_template("index.html", name=name)
+@views.route("/json")
+def get_json():
+    return jsonify({"name": "Danny", "skillset": "complete"})
